@@ -1,35 +1,27 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import * as S from "./styles";
 import FormCars from "../../components/FormCars";
-import Vehicle from "../../components/Vehicle";
 import Carousel from "../../components/Carousel";
-import { AppContext } from "../../context/appContext";
+import { useHome } from "./useHome";
 
 function Home() {
-  // const { addVehicle } = useContext(AppContext);
-
-  // console.log("Contesxadanalk:>", addVehicle);
-
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
+  const { closeModal, openModal, isModalOpen } = useHome();
   return (
     <>
       <S.Container>
         <S.Header>
-          <S.Logo>Ws work</S.Logo>
+          <S.ContainerLogo>
+            <img
+              src="https://www.wswork.com.br/assets/img/logows.svg"
+              alt=""
+              height={40}
+            />
+            <S.Logo>Ws work Car challenge</S.Logo>
+          </S.ContainerLogo>
           <S.ButtonCreateVehicle onClick={() => openModal()}>
             Criar novo veículo
           </S.ButtonCreateVehicle>
         </S.Header>
-        oi
         <S.Main>
           <Carousel />
         </S.Main>
