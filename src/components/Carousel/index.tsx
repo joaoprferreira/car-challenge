@@ -1,4 +1,4 @@
-import React, { useState, memo, useContext } from "react";
+import React, { memo, useContext } from "react";
 import * as S from "./styles";
 import Vehicle from "../Vehicle";
 import { brands } from "../../models/brands";
@@ -10,8 +10,8 @@ function Carousel() {
   return (
     <S.Container>
       {brands.map((res, index) => (
-        <div key={index}>
-          <p>{res}</p>
+        <S.ContainerContent key={index}>
+          <S.titleCarousel>{res}</S.titleCarousel>
           <S.SliderContainer>
             {state.vehicles.map((item, index) =>
               brands[item.brand] === res ? (
@@ -24,13 +24,13 @@ function Carousel() {
                   numberDoors={item.numberDoors}
                   year={item.year}
                   value={item.value}
-                  timesTamp={item.registrationDate}
+                  timesTamp={item?.registrationDate}
                   key={index}
                 />
               ) : null
             )}
           </S.SliderContainer>
-        </div>
+        </S.ContainerContent>
       ))}
     </S.Container>
   );
