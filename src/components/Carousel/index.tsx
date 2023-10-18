@@ -1,12 +1,15 @@
-import React, { memo, useContext } from "react";
+import React, { memo } from "react";
 import * as S from "./styles";
 import Vehicle from "../Vehicle";
-import { brands } from "../../models/brands";
-import { AppContext } from "../../context/appContext";
 
-function Carousel() {
-  const { state } = useContext(AppContext);
+import { IVehicleState } from "../../context/types";
 
+interface ICarousel {
+  brands: string[];
+  state: IVehicleState;
+}
+
+function Carousel({ brands, state }: ICarousel) {
   return (
     <S.Container>
       {brands.map((res, index) => (

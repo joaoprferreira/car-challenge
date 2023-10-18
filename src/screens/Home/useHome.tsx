@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AppContext } from "../../context/appContext";
 
 export function useHome() {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { state } = useContext(AppContext);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -11,5 +13,5 @@ export function useHome() {
     setIsModalOpen(false);
   };
 
-  return { openModal, closeModal, isModalOpen };
+  return { openModal, closeModal, isModalOpen, state };
 }

@@ -3,9 +3,10 @@ import * as S from "./styles";
 import FormCars from "../../components/FormCars";
 import Carousel from "../../components/Carousel";
 import { useHome } from "./useHome";
+import { brands } from "../../models/brands";
 
 function Home() {
-  const { closeModal, openModal, isModalOpen } = useHome();
+  const { closeModal, openModal, isModalOpen, state } = useHome();
   return (
     <>
       <S.Container>
@@ -23,7 +24,7 @@ function Home() {
           </S.ButtonCreateVehicle>
         </S.Header>
         <S.Main>
-          <Carousel />
+          <Carousel brands={brands} state={state} />
         </S.Main>
         <FormCars isOpen={isModalOpen} onClose={closeModal} />
       </S.Container>
