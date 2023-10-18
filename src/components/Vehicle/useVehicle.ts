@@ -16,7 +16,7 @@ export default function useVehicle() {
     );
   }
 
-  const formatTimesTamp = (time: number) => {
+  const formatTimesTamp = (time?: any) => {
     const date = new Date(time * 1000);
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
