@@ -1,7 +1,7 @@
 export interface IVehicle {
-  id: number;
-  image?: string;
-  registrationDate: number;
+  id?: number;
+  image: string;
+  registrationDate?: number;
   model_id?: number;
   year: number;
   combustible: string;
