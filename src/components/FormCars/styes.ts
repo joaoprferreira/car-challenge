@@ -55,6 +55,10 @@ export const InputText = styled.input`
   }
 `;
 
+export const TextError = styled.p`
+  color: red;
+`;
+
 export const ContainerButton = styled.div`
   display: flex;
   width: 100%;
