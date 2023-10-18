@@ -1,19 +1,7 @@
-import React, { useContext } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import React from "react";
 import * as S from "./styes";
-import { AppContext } from "../../context/appContext";
-import { IVehicle } from "../../context/types";
-
-enum BrandEnum {
-  Hyunday = 0,
-  Honda = 1,
-  Toyota = 2,
-  Volkswagen = 3,
-  Mitsubishi = 4,
-  Ford = 5,
-  Fiat = 6,
-  Chevrolet = 7,
-}
+import "react-toastify/dist/ReactToastify.css";
+import useFormCars from "./useFormCars";
 
 function FormCars({
   isOpen,
@@ -22,27 +10,7 @@ function FormCars({
   isOpen: boolean;
   onClose: () => void;
 }) {
-  const { register, handleSubmit } = useForm<IVehicle>();
-
-  const { addVehicle, state } = useContext(AppContext);
-
-  const vehicles = JSON.parse(
-    localStorage.getItem("vehicles") || "[]"
-  ) as IVehicle[];
-  const lastVehicle = vehicles[vehicles.length - 1];
-  let nextId = 1;
-  if (lastVehicle) {
-    nextId = lastVehicle.id + 1;
-  }
-
-  const onSubmit: SubmitHandler<IVehicle> = (data: IVehicle) => {
-    addVehicle({
-      ...data,
-      value: Number(data.value),
-      registrationDate: Math.floor(Date.now() / 1000),
-      id: nextId,
-    });
-  };
+  const { errors, handleSubmit, register, onSubmit } = useFormCars({ onClose });
 
   if (!isOpen) return null;
 
@@ -51,8 +19,13 @@ function FormCars({
       <S.ModalContent>
         <S.Form onSubmit={handleSubmit(onSubmit)}>
           <S.InputText {...register("image")} placeholder="www.image.jpg" />
+          {errors.image && <S.TextError> {errors.image.message}</S.TextError>}
           <S.InputText {...register("name_model")} placeholder="Modelo" />
+          {errors.name_model && (
+            <S.TextError>{errors.name_model.message}</S.TextError>
+          )}
           <S.InputText {...register("year")} placeholder="Ano" />
+          {errors.year && <S.TextError>{errors.year.message}</S.TextError>}
           <S.SelectContainer>
             <S.Select {...register("brand")}>
               <option value={0}>Toyota</option>
@@ -65,10 +38,20 @@ function FormCars({
               <option value={7}>Chevrolet</option>
             </S.Select>
           </S.SelectContainer>
+          {errors.brand && <S.TextError>{errors.brand.message}</S.TextError>}
           <S.InputText {...register("color")} placeholder="Cor" />
+          {errors.color && <S.TextError>{errors.color.message}</S.TextError>}
           <S.InputText {...register("combustible")} placeholder="Combustível" />
+          {errors.combustible && (
+            <S.TextError>{errors.combustible.message}</S.TextError>
+          )}
           <S.InputText {...register("numberDoors")} placeholder="Portas" />
+          {errors.numberDoors && (
+            <S.TextError>{errors.numberDoors.message}</S.TextError>
+          )}
           <S.InputText {...register("value")} placeholder="valor" />
+          {errors.value && <S.TextError>{errors.value.message}</S.TextError>}
+
           <S.ContainerButton>
             <S.CancelButton onClick={() => onClose()}>Cancelar</S.CancelButton>
             <S.SendButton onClick={handleSubmit(onSubmit)}>
