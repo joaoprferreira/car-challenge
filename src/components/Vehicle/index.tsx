@@ -14,7 +14,7 @@ interface IVehicle {
   model_id?: string;
   value: number;
   brand: number;
-  timesTamp: number;
+  timesTamp?: number;
 }
 
 function Vehicle({
