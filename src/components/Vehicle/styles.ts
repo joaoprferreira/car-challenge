@@ -11,7 +11,7 @@ export const Card = styled.div`
 `;
 
 export const CardHeader = styled.div`
-  background-color: #2196f3;
+  background-color: #f44336;
   color: #fff;
   padding: 10px;
   border-radius: 4px 4px 0 0;
@@ -57,11 +57,6 @@ export const CardFooterButton = styled.button`
 export const Item = styled.div`
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center;; */
-
-  /* border: 1px solid gray; */
-  /* height: 10px; */
   color: gray;
   border-radius: 10px;
 `;
