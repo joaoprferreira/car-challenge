@@ -35,6 +35,7 @@ export const AppProvider: React.FC<{ children: ReactNode }> = ({
         dispatch({
           type: "ADD_VEHICLE",
           payload: {
+            image: "",
             brand: item.brand - 1,
             color: item.cor,
             combustible: item.combustivel,
